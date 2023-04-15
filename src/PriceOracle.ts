@@ -31,15 +31,8 @@ export class PriceOracle extends SmartContract {
       ...Permissions.default(),
       editState: Permissions.proofOrSignature(),
     });
-    this.price.set(Field(0));
-  }
-
-  @method init(zkappKey: PrivateKey) {
-    super.init(zkappKey);
-    // Initialize contract state
     this.oraclePublicKey.set(PublicKey.fromBase58(ORACLE_PUBLIC_KEY));
-    // Specify that caller should include signature with tx instead of proof
-    this.requireSignature();
+    this.price.set(Field(0));
   }
 
   @method verify(price: Field, time: Field, signature: Signature) {
